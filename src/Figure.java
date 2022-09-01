@@ -15,8 +15,8 @@ public class Figure extends JComponent {
     public void paint(Graphics g) {
         g.setColor(color);
         switch (type) {
-            case ("oval"): g.fillOval(0, 0, 100, 100); break;
-            case ("rectangle"): g.fillRect(0, 0, 100, 50); break;
+            case ("oval"): g.fillOval(0, 0, 60, 60); break;
+            case ("rectangle"): g.fillRect(0, 0, 100, 200); break;
         }
     }
 }
