@@ -106,6 +106,7 @@ public class Main{
 
             graphics2D.setColor(Color.gray.brighter());
             graphics2D.fill(curve);
+            graphics2D.setColor(Color.black);
             graphics2D.draw(curve);
             graphics2D.setColor(Color.black);
             graphics2D.draw(light);
