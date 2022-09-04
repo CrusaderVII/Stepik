@@ -1,10 +1,6 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.geom.Arc2D;
 import java.awt.geom.Line2D;
+import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 import java.nio.file.Paths;
 import javax.swing.*;
@@ -14,73 +10,116 @@ public class Main{
         @Override
         protected void paintComponent(Graphics g) {
             Graphics2D graphics2D = (Graphics2D) g;
-            Color black = Color.BLACK;
-            graphics2D.setColor(black);
-            int xPoints[] = {270, 270, 470, 470};
-            int yPoints[] = {90, 510, 510, 90};
-            graphics2D.setColor(black);
-            graphics2D.fillPolygon(xPoints, yPoints, 4);
-            graphics2D.fillRoundRect(270, 400, 200, 130, 40, 40);
-            graphics2D.fillOval(270, 30, 200, 120);
+            graphics2D.setColor(Color.gray);
+            /*for (int i = 1; i<70; i++) {
+                Line2D line = new Line2D.Double(0,i*10, 700, i*10);
+                graphics2D.draw(line);
+            }
+            for (int i = 1; i<70; i++) {
+                Line2D line = new Line2D.Double(i*10, 0, i*10, 700);
+                graphics2D.draw(line);
+            }*/
+            graphics2D.setColor(Color.black);
+            graphics2D.setStroke(new BasicStroke(4, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+            Path2D.Double curve = new Path2D.Double();
+            //body
+            curve.moveTo(70,200);
+            curve.lineTo(100, 100);
+            curve.lineTo(240, 100);
+            curve.curveTo(240, 100, 270, 100, 270, 120);
+            curve.lineTo(360, 120);//
+            curve.curveTo(360, 120, 370, 120, 370, 130);
+            curve.lineTo(390, 200);
+            curve.curveTo(390, 200, 545, 200, 560, 220);
+            curve.lineTo(560, 230);
+            curve.lineTo(570, 270);
 
-            graphics2D.setColor(Color.white);
-            graphics2D.fillOval(295, 60, 150, 150);
-            graphics2D.setColor(black);
-            graphics2D.fillOval(285, 80, 170,  140);
-            graphics2D.setColor(Color.red);
-            graphics2D.fillOval(320, 90, 100, 100);
+            curve.moveTo(70, 200);
 
-            graphics2D.setColor(Color.white);
-            graphics2D.fillOval(295, 215, 150, 150);
-            graphics2D.setColor(black);
-            graphics2D.fillOval(285, 235, 170,  140);
-            graphics2D.setColor(Color.yellow);
-            graphics2D.fillOval(320, 245, 100, 100);
+            curve.lineTo(70, 250);
+            curve.curveTo(70, 250, 70, 260, 60, 260);
+            curve.curveTo(60, 260, 50, 260, 50, 270);
+            curve.lineTo(50, 280);
+            curve.curveTo(50, 280, 50, 290, 55, 290);
+            curve.curveTo(55 ,290, 60, 290, 60, 300);
+            curve.lineTo(120, 300);
+            curve.curveTo(120, 300, 120, 260, 160, 260);//
+            curve.curveTo(160, 260, 200, 260, 200, 300);
+            curve.lineTo(400, 300);
+            curve.curveTo(400, 300, 400, 260, 440, 260);
+            curve.curveTo(440, 260, 480, 260, 480, 300);
+            curve.lineTo(540, 300);
+            curve.curveTo(540, 300, 570, 300, 570, 270);
 
-            graphics2D.setColor(Color.white);
-            graphics2D.fillOval(295, 365, 150, 150);
-            graphics2D.setColor(black);
-            graphics2D.fillOval(285, 385, 170,  140);
-            graphics2D.setColor(Color.GREEN);
-            graphics2D.fillOval(320, 395, 100, 100);
+            //light
+            Path2D light = new Path2D.Double();
+            light.moveTo(550, 230);
+            light.lineTo(555, 250);
+            light.curveTo(555, 250, 520, 250, 520, 230);
+            light.lineTo(550, 230);
 
-            graphics2D.setColor(black);
-            int xPoints1 [] = {240, 190, 260, 260};
-            int yPoints1 [] = {90, 90, 160, 110};
-            graphics2D.fillPolygon(xPoints1, yPoints1, 4);
-            graphics2D.fillOval(220, 90, 40, 40);
+            //reserve
+            Path2D reserve = new Path2D.Double();
+            reserve.moveTo(70, 160);
+            reserve.lineTo(70, 240);
+            reserve.curveTo(70, 240, 70, 250, 60, 250);
+            reserve.lineTo(40, 250);
+            reserve.curveTo(40, 250, 30, 250, 30, 240);
+            reserve.lineTo(30, 160);
+            reserve.curveTo(30, 160, 30, 150, 40, 150);
+            reserve.lineTo(60, 150);
+            reserve.curveTo(60, 150, 70, 150, 70, 160);
 
-            int xPoints2 [] = {240, 190, 260, 260};
-            int yPoints2 [] = {250, 250, 320, 270};
-            graphics2D.fillPolygon(xPoints2, yPoints2, 4);
-            graphics2D.fillOval(220, 250, 40, 40);
+            //wheels
+            graphics2D.drawOval(130, 270, 60, 60);
+            graphics2D.setColor(Color.gray.darker());
+            graphics2D.fillOval(130, 270, 60, 60);
+            graphics2D.setColor(Color.black);
+            graphics2D.drawOval(410, 270, 60, 60);
+            graphics2D.setColor(Color.gray.darker());
+            graphics2D.fillOval(410, 270, 60, 60);
+            graphics2D.setColor(Color.black);
+            graphics2D.fillOval(145, 285, 30, 30);
+            graphics2D.fillOval(425, 285, 30, 30);
 
-            int xPoints3 [] = {240, 190, 260, 260};
-            int yPoints3 [] = {400, 400, 470, 420};
-            graphics2D.fillPolygon(xPoints3, yPoints3, 4);
-            graphics2D.fillOval(220, 400, 40, 40);
+            //glass
+            Path2D glass1 = new Path2D.Double();
+            glass1.moveTo(375, 200);
+            glass1.lineTo(280, 200);
+            glass1.lineTo(280, 135);
+            glass1.lineTo(355, 135);
+            glass1.lineTo(375, 200);
 
-            int xPoints4 [] = {500, 550, 480, 480};
-            int yPoints4 [] = {90, 90, 160, 110};
-            graphics2D.fillPolygon(xPoints4, yPoints4, 4);
-            graphics2D.fillOval(480, 90, 40, 40);
+            Path2D glass2 = new Path2D.Double();
+            glass2.moveTo(260, 200);
+            glass2.lineTo(260, 135);
+            glass2.lineTo(150, 135);
+            glass2.curveTo(150, 135, 90, 135, 90, 200);
+            glass2.lineTo(260, 200);
 
-            int xPoints5 [] = {500, 550, 480, 480};
-            int yPoints5 [] = {250, 250, 320, 270};
-            graphics2D.fillPolygon(xPoints5, yPoints5, 4);
-            graphics2D.fillOval(480, 250, 40, 40);
+            graphics2D.setColor(Color.black);
+            graphics2D.draw(glass2);
+            graphics2D.draw(glass1);
+            graphics2D.draw(reserve);
+            graphics2D.draw(curve);
+            graphics2D.setColor(Color.gray);
 
-            int xPoints6 [] = {500, 550, 480, 480};
-            int yPoints6 [] = {400, 400, 470, 420};
-            graphics2D.fillPolygon(xPoints6, yPoints6, 4);
-            graphics2D.fillOval(480, 400, 40, 40);
+            graphics2D.setColor(Color.gray.brighter());
+            graphics2D.fill(curve);
+            graphics2D.draw(curve);
+            graphics2D.setColor(Color.black);
+            graphics2D.draw(light);
+            graphics2D.setColor(Color.yellow.brighter());
+            graphics2D.fill(light);
+            graphics2D.setColor(Color.gray.darker());
+            graphics2D.fill(reserve);
+            graphics2D.setColor(Color.CYAN.brighter());
+            graphics2D.fill(glass1);
+            graphics2D.fill(glass2);
+            graphics2D.setColor(Color.black);
+            graphics2D.draw(glass1);
+            graphics2D.draw(glass2);
 
-            graphics2D.fillRoundRect(300, 540, 140, 40, 30, 30);
-            graphics2D.fillRoundRect(300, 590, 140, 40, 30, 30);
-            graphics2D.fillRoundRect(330, 640, 80, 110, 30, 30);
-
-            graphics2D.setColor(Color.white);
-            graphics2D.fillRoundRect(390, 660, 10, 70, 10, 10);
         }
     }
 
